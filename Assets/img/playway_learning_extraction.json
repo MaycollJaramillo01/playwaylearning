@@ -1,0 +1,319 @@
+{
+  "company": {
+    "name": "PlayWay Learning",
+    "website": "https://playwaylearning.com/",
+    "positioning": "Aprendizaje interactivo, desarrollo personal y creatividad; formación corporativa enfocada en liderazgo y habilidades blandas.",
+    "mission": "Despertar el líder que cada persona lleva dentro y construir un legado a través de una cultura positiva, humanista y de compromiso.",
+    "vision": "Crear un mundo con personas que, por medio de su liderazgo personal, hagan trascender al mundo y sus organizaciones creando un legado.",
+    "values": [
+      "Autodeterminación y libertad",
+      "Liderazgo personal",
+      "Actitud positiva y resiliencia"
+    ],
+    "services": [
+      "Capacitaciones corporativas — programa Playground",
+      "Paquetes de Coaching",
+      "MetaConferencias"
+    ],
+    "level_up_process": [
+      "Reconocer y alinear objetivos",
+      "Fortalecer habilidades",
+      "Accionar hacia un legado / tomar acciones"
+    ],
+    "playground": {
+      "description": "Programa corporativo de seis módulos enfocado en habilidades humanas para autoliderazgo y liderazgo de equipos.",
+      "methodology": "MetaTraining®; educación experiencial basada en metáforas."
+    },
+    "soft_skills": [
+      "Trabajo en equipo",
+      "Inteligencia emocional",
+      "Comunicación asertiva",
+      "Escucha activa",
+      "Gestión del tiempo",
+      "Productividad",
+      "Gestión del cambio",
+      "Adaptabilidad",
+      "Resolución de conflictos",
+      "Toma de decisiones",
+      "Establecimiento de objetivos",
+      "Automotivación"
+    ],
+    "coaching_methodology": "World Coaching Corporation (WCC): Coaching de Acción y Coaching de Segunda Generación, centrado en cliente, presente, acción, aprendizaje experiencial y confidencialidad.",
+    "facilitator_countries_listed": [
+      "Bolivia",
+      "Chile",
+      "España",
+      "México",
+      "Perú",
+      "Colombia",
+      "Ecuador",
+      "Guatemala",
+      "Panamá",
+      "República Dominicana",
+      "Costa Rica",
+      "EE.UU",
+      "Honduras",
+      "Paraguay"
+    ],
+    "email": "Info@playwaylearning.com",
+    "socials": {
+      "instagram": "https://www.instagram.com/playwaylearning/",
+      "linkedin": "https://www.linkedin.com/company/playwaylearning/",
+      "tiktok": "https://www.tiktok.com/@playway.learning"
+    },
+    "linkedin_public_profile": {
+      "industry": "Business Consulting and Services",
+      "headquarters": "Santa Tecla, La Libertad, El Salvador",
+      "company_size": "2-10 employees",
+      "type": "Self-Owned",
+      "founded": 2024,
+      "specialties": [
+        "Liderazgo",
+        "Desarrollo Humano",
+        "Trabajo en Equipo",
+        "Coaching",
+        "Conferencias"
+      ],
+      "founder_or_public_lead": "Jorge Henriquez"
+    },
+    "testimonials_present_on_home": [
+      "Iris Lizeth Flores Alvarado",
+      "Herbert Alexander Armas Guerrero",
+      "Amílcar Alexander Ardón",
+      "Ada Hueso de Vega"
+    ],
+    "pages_reviewed": [
+      "https://playwaylearning.com/",
+      "https://playwaylearning.com/contacto",
+      "https://playwaylearning.com/servicios",
+      "https://playwaylearning.com/galeria",
+      "https://playwaylearning.com/nosotros"
+    ]
+  },
+  "images": [
+    {
+      "section": "UI global",
+      "filename": "WhatsApp.svg",
+      "type": "icon",
+      "status": "verified_url",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg",
+      "notes": "Icono flotante de WhatsApp; recurso externo de Wikimedia."
+    },
+    {
+      "section": "Inicio",
+      "filename": "1J6A0094-8311442.jpg",
+      "type": "hero/photo",
+      "status": "verified_url",
+      "url": "https://content.app-sources.com/s/643157702255021601/uploads/Images/1J6A0094-8311442.jpg?format=webp",
+      "notes": "Imagen principal visible en Inicio."
+    },
+    {
+      "section": "Inicio/Testimonios",
+      "filename": "PlayWay-_Fondo_blanco_3-9504680.jpg",
+      "type": "testimonial_portrait",
+      "status": "verified_url",
+      "url": "https://content.app-sources.com/s/643157702255021601/uploads/Images/PlayWay-_Fondo_blanco_3-9504680.jpg?format=webp",
+      "notes": "Retrato usado en testimonios."
+    },
+    {
+      "section": "Inicio/Testimonios",
+      "filename": "stars-7250417.png",
+      "type": "rating_graphic",
+      "status": "verified_url",
+      "url": "https://content.app-sources.com/s/24444282803329/uploads/a-products/stars-7250417.png?format=webp",
+      "notes": "Gráfico de estrellas reutilizado entre testimonios."
+    },
+    {
+      "section": "Inicio/Testimonios",
+      "filename": "PlayWay-_Fondo_blanco_2-9504144.jpg",
+      "type": "testimonial_portrait",
+      "status": "verified_url",
+      "url": "https://content.app-sources.com/s/643157702255021601/uploads/Images/PlayWay-_Fondo_blanco_2-9504144.jpg?format=webp",
+      "notes": "Retrato usado en testimonios."
+    },
+    {
+      "section": "Inicio/Testimonios",
+      "filename": "PlayWay-_PlayWay-_Sin_fondo_4-9504680.png",
+      "type": "testimonial_portrait",
+      "status": "verified_url",
+      "url": "https://content.app-sources.com/s/643157702255021601/uploads/Images/PlayWay-_PlayWay-_Sin_fondo_4-9504680.png?format=webp",
+      "notes": "Retrato usado en testimonios."
+    },
+    {
+      "section": "Inicio/Testimonios",
+      "filename": "PlayWay-_Fondo_blanco_1-9510254.jpg",
+      "type": "testimonial_portrait",
+      "status": "verified_url",
+      "url": "https://content.app-sources.com/s/643157702255021601/uploads/Images/PlayWay-_Fondo_blanco_1-9510254.jpg?format=webp",
+      "notes": "Retrato usado en testimonios."
+    },
+    {
+      "section": "Quiénes somos",
+      "filename": "Copia_de_IMG_3454-8223442.JPG",
+      "type": "photo",
+      "status": "verified_url",
+      "url": "https://content.app-sources.com/s/643157702255021601/uploads/Images/Copia_de_IMG_3454-8223442.JPG?format=webp",
+      "notes": "Fotografía de taller/actividad."
+    },
+    {
+      "section": "Quiénes somos",
+      "filename": "Copia_de_IMG_3460-8223443.JPG",
+      "type": "photo",
+      "status": "verified_url",
+      "url": "https://content.app-sources.com/s/643157702255021601/uploads/Images/Copia_de_IMG_3460-8223443.JPG?format=webp",
+      "notes": "Fotografía de taller/actividad."
+    },
+    {
+      "section": "Servicios",
+      "filename": "unnamed-0476935.png",
+      "type": "methodology_logo",
+      "status": "verified_url",
+      "url": "https://content.app-sources.com/s/643157702255021601/uploads/Images/unnamed-0476935.png?format=webp",
+      "notes": "Logo/imagen de MetaTraining."
+    },
+    {
+      "section": "Galería",
+      "filename": "IMG_3831-9337115.jpg",
+      "type": "gallery_photo",
+      "status": "verified_thumbnail_and_pattern_normalized",
+      "url": "https://content.app-sources.com/s/643157702255021601/uploads/Images/IMG_3831-9337115.jpg?format=webp",
+      "notes": "Original normalizado desde URL de miniatura."
+    },
+    {
+      "section": "Galería",
+      "filename": "Copia_de_1J6A0338-9678933.JPG",
+      "type": "gallery_photo",
+      "status": "verified_original",
+      "url": "https://content.app-sources.com/s/643157702255021601/uploads/Images/Copia_de_1J6A0338-9678933.JPG?format=webp",
+      "notes": ""
+    },
+    {
+      "section": "Galería",
+      "filename": "IMG_3757-9337112.JPG",
+      "type": "gallery_photo",
+      "status": "verified_thumbnail_and_pattern_normalized",
+      "url": "https://content.app-sources.com/s/643157702255021601/uploads/Images/IMG_3757-9337112.JPG?format=webp",
+      "notes": "Original normalizado desde URL de miniatura."
+    },
+    {
+      "section": "Galería",
+      "filename": "Copia_de_1J6A0305-9678933.JPG",
+      "type": "gallery_photo",
+      "status": "thumbnail_url_extracted_fetch_failed_original_inferred",
+      "url": "https://content.app-sources.com/s/643157702255021601/uploads/Images/Copia_de_1J6A0305-9678933.JPG?format=webp",
+      "notes": "La miniatura fue detectada por el sitio pero el fetch del crawler falló; original inferido por el patrón del CDN."
+    },
+    {
+      "section": "Galería",
+      "filename": "Copia_de_IMG_3293-9337107.JPG",
+      "type": "gallery_photo",
+      "status": "verified_thumbnail_and_pattern_normalized",
+      "url": "https://content.app-sources.com/s/643157702255021601/uploads/Images/Copia_de_IMG_3293-9337107.JPG?format=webp",
+      "notes": "Original normalizado desde URL de miniatura."
+    },
+    {
+      "section": "Galería",
+      "filename": "Copia_de_IMG_3257-9337106.JPG",
+      "type": "gallery_photo",
+      "status": "verified_thumbnail_and_pattern_normalized",
+      "url": "https://content.app-sources.com/s/643157702255021601/uploads/Images/Copia_de_IMG_3257-9337106.JPG?format=webp",
+      "notes": "Original normalizado desde URL de miniatura."
+    },
+    {
+      "section": "Galería",
+      "filename": "IMG_3737-9337111.JPG",
+      "type": "gallery_photo",
+      "status": "verified_original",
+      "url": "https://content.app-sources.com/s/643157702255021601/uploads/Images/IMG_3737-9337111.JPG?format=webp",
+      "notes": ""
+    },
+    {
+      "section": "Galería",
+      "filename": "Copia_de_IMG_3552-9337108.JPG",
+      "type": "gallery_photo",
+      "status": "verified_thumbnail_and_pattern_normalized",
+      "url": "https://content.app-sources.com/s/643157702255021601/uploads/Images/Copia_de_IMG_3552-9337108.JPG?format=webp",
+      "notes": "Original normalizado desde URL de miniatura."
+    },
+    {
+      "section": "Galería",
+      "filename": "Copia_de_IMG_3289-9337106.JPG",
+      "type": "gallery_photo",
+      "status": "verified_thumbnail_and_pattern_normalized",
+      "url": "https://content.app-sources.com/s/643157702255021601/uploads/Images/Copia_de_IMG_3289-9337106.JPG?format=webp",
+      "notes": "Original normalizado desde URL de miniatura."
+    },
+    {
+      "section": "Galería",
+      "filename": "IMG_3992-9337122.JPG",
+      "type": "gallery_photo",
+      "status": "verified_thumbnail_and_pattern_normalized",
+      "url": "https://content.app-sources.com/s/643157702255021601/uploads/Images/IMG_3992-9337122.JPG?format=webp",
+      "notes": "Original normalizado desde URL de miniatura."
+    },
+    {
+      "section": "Galería",
+      "filename": "IMG_3819-9337114.JPG",
+      "type": "gallery_photo",
+      "status": "verified_thumbnail_and_pattern_normalized",
+      "url": "https://content.app-sources.com/s/643157702255021601/uploads/Images/IMG_3819-9337114.JPG?format=webp",
+      "notes": "Aparece repetida en la galería; se conserva una sola vez."
+    },
+    {
+      "section": "Galería",
+      "filename": "Copia_de_1J6A0333-8311442.JPG",
+      "type": "gallery_photo",
+      "status": "verified_original",
+      "url": "https://content.app-sources.com/s/643157702255021601/uploads/Images/Copia_de_1J6A0333-8311442.JPG?format=webp",
+      "notes": ""
+    },
+    {
+      "section": "Galería",
+      "filename": "IMG_3969-9337121.JPG",
+      "type": "gallery_photo",
+      "status": "verified_thumbnail_and_pattern_normalized",
+      "url": "https://content.app-sources.com/s/643157702255021601/uploads/Images/IMG_3969-9337121.JPG?format=webp",
+      "notes": "Original normalizado desde URL de miniatura."
+    },
+    {
+      "section": "Galería",
+      "filename": "IMG_3963-9337121.JPG",
+      "type": "gallery_photo",
+      "status": "verified_thumbnail_and_pattern_normalized",
+      "url": "https://content.app-sources.com/s/643157702255021601/uploads/Images/IMG_3963-9337121.JPG?format=webp",
+      "notes": "Original normalizado desde URL de miniatura."
+    },
+    {
+      "section": "Galería",
+      "filename": "IMG_3693-9337109.JPG",
+      "type": "gallery_photo",
+      "status": "verified_original",
+      "url": "https://content.app-sources.com/s/643157702255021601/uploads/Images/IMG_3693-9337109.JPG?format=webp",
+      "notes": ""
+    },
+    {
+      "section": "Galería",
+      "filename": "IMG_3707-9337110.JPG",
+      "type": "gallery_photo",
+      "status": "thumbnail_url_extracted_fetch_failed_original_inferred",
+      "url": "https://content.app-sources.com/s/643157702255021601/uploads/Images/IMG_3707-9337110.JPG?format=webp",
+      "notes": "La miniatura fue detectada por el sitio pero el fetch del crawler falló; original inferido por el patrón del CDN."
+    },
+    {
+      "section": "Galería",
+      "filename": "IMG_3697-9337109.JPG",
+      "type": "gallery_photo",
+      "status": "verified_thumbnail_and_pattern_normalized",
+      "url": "https://content.app-sources.com/s/643157702255021601/uploads/Images/IMG_3697-9337109.JPG?format=webp",
+      "notes": "Original normalizado desde URL de miniatura."
+    },
+    {
+      "section": "Galería",
+      "filename": "IMG_3775-9337114.JPG",
+      "type": "gallery_photo",
+      "status": "verified_original",
+      "url": "https://content.app-sources.com/s/643157702255021601/uploads/Images/IMG_3775-9337114.JPG?format=webp",
+      "notes": ""
+    }
+  ]
+}
