@@ -1,29 +1,32 @@
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes, useParams } from 'react-router-dom'
 import { Layout } from './components/Layout'
 import Home from './pages/Home'
 import Services from './pages/Services'
-import Methodology from './pages/Methodology'
-import Playground from './pages/Playground'
-import Coaching from './pages/Coaching'
-import MetaConferences from './pages/MetaConferences'
+import Gallery from './pages/Gallery'
 import About from './pages/About'
-import Experiences from './pages/Experiences'
 import Contact from './pages/Contact'
 import NotFound from './pages/NotFound'
+
+function ServiceRedirect() {
+  const { slug } = useParams()
+  return <Navigate to={`/servicios#${slug}`} replace />
+}
 
 export default function App() {
   return (
     <Layout>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/quienes-somos" element={<About />} />
         <Route path="/servicios" element={<Services />} />
-        <Route path="/servicios/playground" element={<Playground />} />
-        <Route path="/servicios/coaching" element={<Coaching />} />
-        <Route path="/servicios/metaconferencias" element={<MetaConferences />} />
-        <Route path="/metodologia" element={<Methodology />} />
-        <Route path="/experiencias" element={<Experiences />} />
+        <Route path="/galeria" element={<Gallery />} />
+        <Route path="/nosotros" element={<About />} />
         <Route path="/contacto" element={<Contact />} />
+        {/* Old and original-site URLs keep working */}
+        <Route path="/inicio" element={<Navigate to="/" replace />} />
+        <Route path="/quienes-somos" element={<Navigate to="/nosotros" replace />} />
+        <Route path="/experiencias" element={<Navigate to="/galeria" replace />} />
+        <Route path="/metodologia" element={<Navigate to="/servicios" replace />} />
+        <Route path="/servicios/:slug" element={<ServiceRedirect />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Layout>

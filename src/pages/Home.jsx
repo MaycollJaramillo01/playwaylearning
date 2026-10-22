@@ -1,181 +1,58 @@
-import { useRef, useState } from 'react'
-import { AnimatePresence, motion as Motion, useMotionValueEvent, useReducedMotion, useScroll } from 'motion/react'
-import { ArrowRight } from '@phosphor-icons/react'
-import { Link } from 'react-router-dom'
+import { motion as Motion, useReducedMotion } from 'motion/react'
+import { CalendarCheck } from '@phosphor-icons/react'
 import { ButtonLink } from '../components/ButtonLink'
 import { Reveal } from '../components/Reveal'
+import { ServiceCards } from '../components/ServiceCards'
 import { SmartImage } from '../components/SmartImage'
-import { gallery, services, skills, testimonials } from '../data/content'
+import { testimonials } from '../data/content'
+import { usePageTitle } from '../hooks/usePageTitle'
 
-function ServiceExplorer() {
-  const [active, setActive] = useState(0)
-  const service = services[active]
+function Hero() {
   const reduceMotion = useReducedMotion()
 
   return (
-    <div className="service-explorer">
-      <div className="service-stage" aria-live="polite">
-        <AnimatePresence mode="wait">
-          <Motion.div
-            key={service.slug}
-            className="service-stage__image"
-            initial={reduceMotion ? false : { opacity: 0, scale: 1.025 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={reduceMotion ? undefined : { opacity: 0 }}
-            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <SmartImage src={service.image} alt={service.short} sizes="(max-width: 760px) 100vw, 48vw" />
-          </Motion.div>
-        </AnimatePresence>
-        <div className="service-stage__meta">
-          <span>{service.audience}</span>
-          <span>{service.method}</span>
-        </div>
-      </div>
-      <div className="service-options" role="tablist" aria-label="Servicios">
-        {services.map((item, index) => (
-          <button
-            key={item.slug}
-            className={active === index ? 'is-active' : ''}
-            type="button"
-            role="tab"
-            aria-selected={active === index}
-            onMouseEnter={() => setActive(index)}
-            onFocus={() => setActive(index)}
-            onClick={() => setActive(index)}
-          >
-            <span>{item.kicker}</span>
-            <strong>{item.name}</strong>
-            <p>{item.short}</p>
-            <ArrowRight size={24} aria-hidden="true" />
-          </button>
-        ))}
-        <Link className="text-link" to={`/servicios/${service.slug}`}>Conoce {service.name}<ArrowRight aria-hidden="true" /></Link>
-      </div>
-    </div>
-  )
-}
-
-function LevelUp() {
-  const ref = useRef(null)
-  const [active, setActive] = useState(0)
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end end'] })
-  const reduceMotion = useReducedMotion()
-  const steps = [
-    { verb: 'Reconocer', text: 'Hacemos visible el objetivo, el contexto y aquello que el equipo necesita mover.', image: '/assets/images/IMG_3693-9337109.JPG' },
-    { verb: 'Fortalecer', text: 'Ponemos a prueba las habilidades que más importan en situaciones concretas.', image: '/assets/images/Copia_de_IMG_3289-9337106.JPG' },
-    { verb: 'Accionar', text: 'Convertimos los hallazgos en decisiones capaces de sostener el cambio.', image: '/assets/images/IMG_3969-9337121.JPG' },
-  ]
-
-  useMotionValueEvent(scrollYProgress, 'change', (value) => {
-    const next = Math.min(2, Math.floor(value * 3))
-    setActive((current) => (current === next ? current : next))
-  })
-
-  return (
-    <section className="levelup-section" ref={ref}>
-      <div className="levelup-sticky">
-        <div className="levelup-heading">
-          <span className="kicker kicker--light">Metodología Level-Up</span>
-          <h2>Del objetivo a una acción que deja huella.</h2>
-          <Link className="text-link text-link--light" to="/metodologia">Ver metodología<ArrowRight aria-hidden="true" /></Link>
-        </div>
-        <div className="levelup-visual">
-          <AnimatePresence mode="wait">
-            <Motion.div
-              key={steps[active].verb}
-              initial={reduceMotion ? false : { opacity: 0, clipPath: 'inset(8% 0 0 0)' }}
-              animate={{ opacity: 1, clipPath: 'inset(0% 0 0 0)' }}
-              exit={reduceMotion ? undefined : { opacity: 0 }}
-              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <SmartImage src={steps[active].image} alt={`${steps[active].verb}: experiencia de aprendizaje en equipo`} sizes="(max-width: 760px) 100vw, 38vw" />
-            </Motion.div>
-          </AnimatePresence>
-        </div>
-        <div className="levelup-steps">
-          {steps.map((step, index) => (
-            <div key={step.verb} className={active === index ? 'is-active' : ''}>
-              <b>0{index + 1}</b>
-              <h3>{step.verb}</h3>
-              <p>{step.text}</p>
-            </div>
-          ))}
-        </div>
-        <Motion.span className="levelup-progress" style={{ scaleX: scrollYProgress }} aria-hidden="true" />
-      </div>
-    </section>
-  )
-}
-
-function SkillMarquee() {
-  const reduceMotion = useReducedMotion()
-  const list = [...skills, ...skills]
-
-  return (
-    <section className="skills-marquee" aria-label="Habilidades que desarrollamos">
+    <section className="hero">
+      <SmartImage
+        src="/assets/images/IMG_3992-9337122.JPG"
+        alt="Equipo de PlayWay Learning celebra frente al banner BOOM"
+        className="hero__photo"
+        priority
+      />
+      <div className="hero__panel" aria-hidden="true" />
+      <svg className="hero__lines" viewBox="0 0 1366 530" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M-10 70 C 60 20, 150 60, 120 110 C 95 150, 30 120, 70 85 C 120 40, 250 70, 320 -10" stroke="#e95b0d" />
+        <path d="M1150 -10 C 1170 70, 1250 110, 1380 150" stroke="#e95b0d" />
+        <path d="M-10 470 C 120 420, 260 450, 330 540" stroke="#fff" />
+        <path d="M1180 520 C 1170 470, 1220 455, 1240 485 C 1255 510, 1215 525, 1205 495 C 1200 470, 1290 455, 1380 450" stroke="#fff" />
+      </svg>
       <Motion.div
-        className="skills-track"
-        animate={reduceMotion ? undefined : { x: ['0%', '-50%'] }}
-        transition={{ duration: 38, repeat: Infinity, ease: 'linear' }}
+        className="hero__copy"
+        initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       >
-        {list.map((skill, index) => <span key={`${skill}-${index}`}>{skill}</span>)}
+        <h1>BIENVENIDOS</h1>
+        <p className="hero__lead">A NUESTRO ESPACIO DE CRECIMIENTO Y CREATIVIDAD</p>
+        <p className="hero__tags">Aprendizaje Interactivo | Desarrollo Personal | Creatividad sin Límites</p>
       </Motion.div>
     </section>
   )
 }
 
 function Testimonials() {
-  const [active, setActive] = useState(0)
-  const item = testimonials[active]
-  const reduceMotion = useReducedMotion()
-
   return (
-    <section className="section testimonials-section">
+    <section className="section testimonials">
       <div className="shell">
-        <h2 className="section-title">El cambio se reconoce en la voz de quien lo vivió.</h2>
-        <div className="testimonials-layout">
-          <div className="testimonial-portrait">
-            <AnimatePresence mode="wait">
-              <Motion.div
-                key={item.name}
-                initial={reduceMotion ? false : { opacity: 0, x: -18 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={reduceMotion ? undefined : { opacity: 0, x: 18 }}
-                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              >
-                <SmartImage src={item.portrait} alt={`Retrato de ${item.name}`} sizes="(max-width: 760px) 35vw, 24vw" />
-              </Motion.div>
-            </AnimatePresence>
-          </div>
-          <div className="testimonial-copy" aria-live="polite">
-            <AnimatePresence mode="wait">
-              <Motion.blockquote
-                key={item.quote}
-                initial={reduceMotion ? false : { opacity: 0, y: 18 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={reduceMotion ? undefined : { opacity: 0, y: -18 }}
-                transition={{ duration: 0.4 }}
-              >
-                “{item.quote}”
-                <cite>{item.name}<span>{item.theme}</span></cite>
-              </Motion.blockquote>
-            </AnimatePresence>
-            <div className="testimonial-nav" role="tablist" aria-label="Testimonios">
-              {testimonials.map((person, index) => (
-                <button
-                  key={person.name}
-                  type="button"
-                  role="tab"
-                  aria-selected={active === index}
-                  aria-label={`Ver testimonio de ${person.name}`}
-                  onClick={() => setActive(index)}
-                >
-                  {String(index + 1).padStart(2, '0')}
-                </button>
-              ))}
-            </div>
-          </div>
+        <h2 className="title title--black">Testimonios</h2>
+        <div className="testimonials__grid">
+          {testimonials.map((item, index) => (
+            <Reveal key={item.name} className="testimonial" delay={index * 0.08}>
+              <img src={item.portrait} alt={`Retrato de ${item.name}`} loading="lazy" />
+              <h3>{item.name}</h3>
+              <p>{item.quote}</p>
+              <span className="testimonial__stars" role="img" aria-label="5 de 5 estrellas">★★★★★</span>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>
@@ -183,106 +60,34 @@ function Testimonials() {
 }
 
 export default function Home() {
+  usePageTitle('Inicio', 'Aprendizaje interactivo, desarrollo personal y creatividad sin límites para equipos y organizaciones.')
+
   return (
     <>
-      <section className="home-hero">
-        <div className="shell home-hero__grid">
-          <Motion.div
-            className="home-hero__copy"
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <span className="kicker">Aprendizaje experiencial para empresas</span>
-            <h1><span>Liderazgo en</span><em>movimiento.</em></h1>
-            <p>Experiencias corporativas que convierten habilidades humanas en decisiones, colaboración y cultura.</p>
-            <div className="hero-actions">
-              <ButtonLink to="/contacto">Agenda una conversación</ButtonLink>
-              <Link className="text-link" to="/servicios">Conoce los programas<ArrowRight aria-hidden="true" /></Link>
-            </div>
-          </Motion.div>
-          <Motion.div
-            className="home-hero__media"
-            initial={{ opacity: 0, clipPath: 'inset(0 0 12% 0)' }}
-            animate={{ opacity: 1, clipPath: 'inset(0 0 0% 0)' }}
-            transition={{ duration: 0.9, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <SmartImage
-              src="/assets/images/Copia_de_IMG_3293-9337107.JPG"
-              alt="Equipo de PlayWay Learning participa en una dinámica al aire libre"
-              className="hero-photo"
-              priority
-              sizes="(max-width: 760px) 100vw, 48vw"
-            />
-            <div className="hero-shape" aria-hidden="true"><span>+</span></div>
-          </Motion.div>
-        </div>
-      </section>
+      <Hero />
 
-      <section className="proof-line" aria-label="Alianzas y experiencias documentadas">
-        <div className="shell">
-          <p>Experiencias documentadas con</p>
-          <div><strong>Asesuisa CREE</strong><strong>Camarasal</strong><strong>Brújula Empresarial</strong></div>
+      <section className="section about-intro">
+        <div className="shell about-intro__grid">
+          <Reveal className="about-intro__copy">
+            <h2 className="title title--light title--orange">¿Quiénes somos y Cómo podemos ayudarte?</h2>
+            <p>¡Bienvenidos a PlayWay Learning, donde todas las persona son líderes, la vida y los negocios son un juego infinito, y donde crecer y aprender es divertido!</p>
+            <p>Estamos aquí para transformar tu equipo de manera significativa y duradera. Nuestra misión es empoderar personas y despertar los líderes que cada uno lleva por dentro con un enfoque sólido en habilidades blandas.</p>
+            <p>Nuestra visión es crear un mundo con personas que por medio de su liderazgo personal hagan transcender al mundo y sus organizaciones creando su propio legado.</p>
+          </Reveal>
+          <Reveal className="about-intro__media" delay={0.1}>
+            <SmartImage src="/assets/images/1J6A0094-8311442.jpg" alt="Jorge Henríquez, facilitador de PlayWay Learning, con capa naranja" />
+            <ButtonLink to="/contacto#cita" icon={CalendarCheck} variant="navy-square">Agenda una cita</ButtonLink>
+          </Reveal>
         </div>
-      </section>
-
-      <section className="section manifesto">
-        <div className="shell">
-          <Reveal><p className="manifesto-copy">Una sala puede escuchar una idea. Un equipo necesita <span>ponerla a prueba.</span></p></Reveal>
-          <div className="manifesto-foot">
-            <Reveal><SmartImage src="/assets/images/Copia_de_IMG_3460-8223443.JPG" alt="Participante levanta la mano durante un taller" sizes="(max-width: 760px) 45vw, 22vw" /></Reveal>
-            <Reveal delay={0.1}><p>Diseñamos contextos donde las personas participan, observan y conectan lo vivido con su realidad laboral.</p></Reveal>
-          </div>
-        </div>
-      </section>
-
-      <section className="section services-section">
-        <div className="shell">
-          <Reveal><h2 className="section-title section-title--narrow">Tres formas de mover una organización.</h2></Reveal>
-          <ServiceExplorer />
-        </div>
-      </section>
-
-      <LevelUp />
-
-      <section className="section skills-intro">
-        <div className="shell">
-          <Reveal><h2 className="section-title">Habilidades para el trabajo que realmente sucede.</h2></Reveal>
-          <Reveal delay={0.08}><p>El repertorio cambia según el reto. La práctica siempre conecta con decisiones reales.</p></Reveal>
-        </div>
-        <SkillMarquee />
-      </section>
-
-      <section className="section journal-section">
-        <div className="shell">
-          <div className="journal-title">
-            <Reveal><h2 className="section-title">Esto sí ocurre.</h2></Reveal>
-            <Link className="text-link" to="/experiencias">Ver experiencias<ArrowRight aria-hidden="true" /></Link>
-          </div>
-          <div className="journal-grid">
-            {gallery.slice(0, 5).map((image, index) => (
-              <Reveal key={image.src} className={`journal-item journal-item--${index + 1}`} delay={index * 0.04}>
-                <SmartImage src={image.src} alt={image.alt} sizes="(max-width: 760px) 100vw, 45vw" />
-                <span>{image.label}</span>
-              </Reveal>
-            ))}
-            <Reveal className="journal-statement"><p>Lo que se vive se vuelve propio.</p></Reveal>
-          </div>
-        </div>
+        <hr className="divider" />
       </section>
 
       <Testimonials />
 
-      <section className="section method-callout">
-        <div className="shell method-callout__grid">
-          <Reveal className="method-callout__copy">
-            <h2>La metáfora abre una conversación que una instrucción no alcanza.</h2>
-            <p>MetaTraining® transforma conceptos en una experiencia compartida, memorable y aplicable.</p>
-            <ButtonLink to="/servicios/playground" variant="outline">Explorar Playground</ButtonLink>
-          </Reveal>
-          <Reveal className="method-callout__image" delay={0.1}>
-            <SmartImage src="/assets/images/Copia_de_1J6A0333-8311442.JPG" alt="Facilitador dirige una experiencia frente a un grupo" sizes="(max-width: 760px) 100vw, 50vw" />
-          </Reveal>
+      <section className="section services-home">
+        <div className="shell">
+          <h2 className="title title--xl title--black">Nuestros <span className="text-blue">servicios</span></h2>
+          <ServiceCards />
         </div>
       </section>
     </>

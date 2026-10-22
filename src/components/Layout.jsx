@@ -1,84 +1,80 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion as Motion, useMotionValueEvent, useScroll } from 'motion/react'
-import { ArrowRight, InstagramLogo, LinkedinLogo, List, TiktokLogo, X } from '@phosphor-icons/react'
+import {
+  CalendarCheck, CaretUp, Check, House, Image, InstagramLogo, LinkedinLogo, List, Phone, TiktokLogo, UsersThree, WhatsappLogo, X,
+} from '@phosphor-icons/react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
-import { ButtonLink } from './ButtonLink'
+import { EMAIL, WHATSAPP_URL, socials } from '../data/content'
 
 const navItems = [
-  { label: 'Inicio', to: '/' },
-  { label: 'Quiénes somos', to: '/quienes-somos' },
-  { label: 'Servicios', to: '/servicios' },
-  { label: 'Metodología', to: '/metodologia' },
-  { label: 'Experiencias', to: '/experiencias' },
+  { label: 'Inicio', to: '/', icon: House },
+  { label: 'Contáctanos', to: '/contacto', icon: Phone },
+  { label: 'Servicios', to: '/servicios', icon: Check },
+  { label: 'Galeria', to: '/galeria', icon: Image },
+  { label: 'Quiénes somos', to: '/nosotros', icon: UsersThree },
 ]
 
-function Wordmark() {
+const socialIcons = { Instagram: InstagramLogo, LinkedIn: LinkedinLogo, TikTok: TiktokLogo }
+
+function Logo() {
   return (
-    <Link className="wordmark" to="/" aria-label="PlayWay Learning, inicio">
-      <span>PLAY</span><b>/</b><span>WAY</span>
+    <Link className="logo" to="/" aria-label="PlayWay Learning, inicio">
+      <span className="logo__main">Play<span>Way</span></span>
+      <span className="logo__sub">LEARNING</span>
     </Link>
+  )
+}
+
+function Pills({ onNavigate }) {
+  return (
+    <>
+      {navItems.map((item) => (
+        <NavLink key={item.to} className="pill" to={item.to} end onClick={onNavigate}>
+          <item.icon size={16} weight="fill" aria-hidden="true" />{item.label}
+        </NavLink>
+      ))}
+      <Link className="pill pill--cta" to="/contacto#cita" onClick={onNavigate}>
+        <CalendarCheck size={16} weight="fill" aria-hidden="true" />Agenda una cita
+      </Link>
+    </>
   )
 }
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
-  const [compact, setCompact] = useState(false)
-  const { scrollY } = useScroll()
   const location = useLocation()
-
-  useMotionValueEvent(scrollY, 'change', (latest) => {
-    const next = latest > 36
-    setCompact((current) => (current === next ? current : next))
-  })
 
   useEffect(() => setMenuOpen(false), [location.pathname])
 
-  useEffect(() => {
-    document.body.style.overflow = menuOpen ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
-  }, [menuOpen])
-
   return (
-    <header className={`site-header ${compact ? 'is-compact' : ''}`}>
+    <header className="site-header">
       <div className="header-inner">
-        <Wordmark />
-        <nav className="desktop-nav" aria-label="Navegación principal">
-          {navItems.map((item) => (
-            <NavLink key={item.to} to={item.to}>{item.label}</NavLink>
-          ))}
-        </nav>
-        <div className="header-actions">
-          <ButtonLink to="/contacto">Agenda una conversación</ButtonLink>
-          <button
-            className="menu-button"
-            type="button"
-            aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
-            aria-expanded={menuOpen}
-            aria-controls="mobile-navigation"
-            onClick={() => setMenuOpen((open) => !open)}
-          >
-            {menuOpen ? <X size={24} /> : <List size={24} />}
-          </button>
-        </div>
+        <button
+          className="menu-button"
+          type="button"
+          aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
+          aria-expanded={menuOpen}
+          aria-controls="mobile-navigation"
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          {menuOpen ? <X size={28} /> : <List size={28} />}
+        </button>
+        <Logo />
+        <nav className="desktop-nav" aria-label="Navegación principal"><Pills /></nav>
       </div>
       <AnimatePresence>
         {menuOpen && (
-          <Motion.div
+          <Motion.nav
             className="mobile-menu"
             id="mobile-navigation"
-            initial={{ opacity: 0, y: -18 }}
+            aria-label="Navegación móvil"
+            initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -18 }}
-            transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.25 }}
           >
-            <nav aria-label="Navegación móvil">
-              {navItems.map((item) => (
-                <NavLink key={item.to} to={item.to}>{item.label}<ArrowRight aria-hidden="true" /></NavLink>
-              ))}
-              <NavLink to="/contacto">Contacto<ArrowRight aria-hidden="true" /></NavLink>
-            </nav>
-            <a href="mailto:Info@playwaylearning.com">Info@playwaylearning.com</a>
-          </Motion.div>
+            <Pills onNavigate={() => setMenuOpen(false)} />
+          </Motion.nav>
         )}
       </AnimatePresence>
     </header>
@@ -88,37 +84,52 @@ function Header() {
 function Footer() {
   return (
     <footer className="site-footer">
-      <div className="footer-callout">
-        <p>El próximo movimiento de tu equipo puede empezar con una conversación.</p>
-        <ButtonLink to="/contacto" variant="inverse">Agenda una conversación</ButtonLink>
+      <div className="footer-social">
+        {socials.map(({ name, href }) => {
+          const Icon = socialIcons[name]
+          return <a key={name} href={href} target="_blank" rel="noreferrer" aria-label={name}><Icon size={16} weight="bold" /></a>
+        })}
       </div>
-      <div className="footer-grid">
-        <div><Wordmark /><p>Aprendizaje experiencial para liderazgo, equipos y cultura.</p></div>
-        <nav aria-label="Navegación de pie">
-          {navItems.slice(1).map((item) => <Link key={item.to} to={item.to}>{item.label}</Link>)}
-          <Link to="/contacto">Contacto</Link>
-        </nav>
-        <div className="footer-social">
-          <a href="https://www.instagram.com/playwaylearning/" target="_blank" rel="noreferrer" aria-label="Instagram"><InstagramLogo /></a>
-          <a href="https://www.linkedin.com/company/playwaylearning/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><LinkedinLogo /></a>
-          <a href="https://www.tiktok.com/@playway.learning" target="_blank" rel="noreferrer" aria-label="TikTok"><TiktokLogo /></a>
-        </div>
-        <div className="footer-meta">
-          <a href="mailto:Info@playwaylearning.com">Info@playwaylearning.com</a>
-          <span>Santa Tecla, El Salvador</span>
-          <span>© {new Date().getFullYear()} PlayWay Learning</span>
-        </div>
-      </div>
+      <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
     </footer>
   )
 }
 
+function FloatingButtons() {
+  const [showTop, setShowTop] = useState(false)
+  const { scrollY } = useScroll()
+
+  useMotionValueEvent(scrollY, 'change', (latest) => {
+    const next = latest > 400
+    setShowTop((current) => (current === next ? current : next))
+  })
+
+  return (
+    <>
+      <a className="whatsapp-button" href={WHATSAPP_URL} target="_blank" rel="noreferrer" aria-label="Escríbenos por WhatsApp">
+        <WhatsappLogo size={34} weight="fill" />
+      </a>
+      <button
+        className={`top-button ${showTop ? 'is-visible' : ''}`}
+        type="button"
+        aria-label="Volver arriba"
+        tabIndex={showTop ? 0 : -1}
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+      >
+        <CaretUp size={22} weight="bold" />
+      </button>
+    </>
+  )
+}
+
 export function Layout({ children }) {
-  const location = useLocation()
+  const { pathname, hash } = useLocation()
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' })
-  }, [location.pathname])
+    const target = hash && document.getElementById(decodeURIComponent(hash.slice(1)))
+    if (target) target.scrollIntoView()
+    else window.scrollTo({ top: 0, behavior: 'instant' })
+  }, [pathname, hash])
 
   return (
     <>
@@ -126,6 +137,7 @@ export function Layout({ children }) {
       <Header />
       <main id="main">{children}</main>
       <Footer />
+      <FloatingButtons />
     </>
   )
 }

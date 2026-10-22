@@ -1,101 +1,98 @@
-export const services = [
-  {
-    slug: 'playground',
-    name: 'Playground',
-    kicker: 'Capacitación corporativa',
-    short: 'Seis módulos para entrenar habilidades humanas a través de retos, metáforas y acción.',
-    audience: 'Equipos, supervisores y gerencias',
-    benefit: 'Colaboración, liderazgo y habilidades aplicables',
-    method: 'MetaTraining®',
-    image: '/assets/images/Copia_de_IMG_3293-9337107.JPG',
-  },
-  {
-    slug: 'coaching',
-    name: 'Coaching',
-    kicker: 'Proceso personal',
-    short: 'Conversaciones confidenciales para convertir un objetivo concreto en decisiones sostenidas.',
-    audience: 'Líderes y profesionales',
-    benefit: 'Claridad, perspectiva y acción',
-    method: 'WCC y Coaching de Acción',
-    image: '/assets/images/IMG_3707-9337110.JPG',
-  },
-  {
-    slug: 'metaconferencias',
-    name: 'MetaConferencias',
-    kicker: 'Ideas en escena',
-    short: 'Contenido, metáfora y participación para activar una conversación colectiva.',
-    audience: 'Audiencias, eventos y organizaciones',
-    benefit: 'Reflexión compartida y recuerdo',
-    method: 'Facilitación experiencial',
-    image: '/assets/images/Copia_de_1J6A0333-8311442.JPG',
-  },
+const img = (name) => `/assets/images/${name}`
+
+export const WHATSAPP_URL = 'https://wa.me/50378616000?text=Hola,%20necesito%20m%C3%A1s%20informaci%C3%B3n!'
+export const EMAIL = 'Info@playwaylearning.com'
+
+export const socials = [
+  { name: 'Instagram', href: 'https://www.instagram.com/playwaylearning/' },
+  { name: 'LinkedIn', href: 'https://www.linkedin.com/company/playwaylearning/' },
+  { name: 'TikTok', href: 'https://www.tiktok.com/@playway.learning' },
 ]
 
-export const skills = [
-  'Trabajo en equipo',
-  'Inteligencia emocional',
-  'Comunicación asertiva',
-  'Escucha activa',
-  'Gestión del tiempo',
-  'Productividad',
-  'Gestión del cambio',
-  'Adaptabilidad',
-  'Resolución de conflictos',
-  'Toma de decisiones',
-  'Objetivos',
-  'Automotivación',
+export const services = [
+  { slug: 'playground', title: ['Capacitaciones', '"Playground"'] },
+  { slug: 'coaching', title: ['Paquetes de', 'Coaching'] },
+  { slug: 'metaconferencias', title: ['MetaConferencias'] },
+]
+
+export const levelUp = [
+  { name: 'Reconocer tus objetivos', text: 'Como todo maestro del juego, es importante conocer cual es objetivo o misión del juego.' },
+  { name: 'Fortalecer habilidades', text: 'Todos los jugadores ya tienen todas las habilidades y vienen desarrolladas en diferentes niveles, se requiere fortalecer las necesarias para cumplir con el objetivo.' },
+  { name: 'Accionar hacia un legado', text: 'Toman acciones que los acercan a completar los objetivos del juego mientras dejan su propio legado con un enfoque hacia el futuro.' },
+]
+
+export const strengths = [
+  'Trabajo en equipo e inteligencia emocional',
+  'Comunicación Asertiva y Escucha Activa.',
+  'Gestión del Tiempo y Productividad.',
+  'Gestión del cambio y Adaptabilidad.',
+  'Resolución de Conflictos y Toma de Decisiones.',
+  'Establecimiento de Objetivos y Automotivación.',
 ]
 
 export const testimonials = [
   {
     name: 'Iris Lizeth Flores Alvarado',
-    portrait: '/assets/images/PlayWay-_Fondo_blanco_1-9510254.jpg',
-    quote: 'Aprendí a reconocer quién soy, qué me afecta y qué necesito mejorar. Descubrí un potencial interno que antes no veía.',
-    theme: 'Autoconocimiento',
+    portrait: img('PlayWay-_Fondo_blanco_3-9504680.jpg'),
+    quote: 'He aprendido muchísimo, valorar a mis compañeros, saber quién soy en realidad, saber qué es lo que me está afectando, cuáles son mis debilidades y en qué debo de mejorar. El saber que tengo un poder interno no descubierto ha sido una experiencia muy bonita',
   },
   {
     name: 'Herbert Alexander Armas Guerrero',
-    portrait: '/assets/images/PlayWay-_Fondo_blanco_2-9504144.jpg',
-    quote: 'La dinámica rompió la rutina y renovó nuestras relaciones, no solo como compañeros de trabajo, también como personas.',
-    theme: 'Conexión humana',
+    portrait: img('PlayWay-_Fondo_blanco_2-9504144.jpg'),
+    quote: 'La experiencia de este día fue muy emotiva para todos, fue una dinámica que rompió nuestra rutina y vino a renacer las relaciones interpersonales no solo del trabajo sino como compañeros, como personas',
   },
   {
     name: 'Amílcar Alexander Ardón',
-    portrait: '/assets/images/PlayWay-_PlayWay-_Sin_fondo_4-9504680.png',
-    quote: 'Para construir un buen ambiente laboral hay que escuchar. Así comprendemos las ideas de los demás y conectamos.',
-    theme: 'Escucha activa',
+    portrait: img('PlayWay-_PlayWay-_Sin_fondo_4-9504680.png'),
+    quote: 'Uno de los provechos que he tenido con este taller ha sido el poder escuchar a los demás, creo que para poder tener un buen ambiente laboral lo primero es saber escuchar a los demás porque de esa manera podemos tener una mejor percepción de sus ideas, y así poder conectar',
   },
   {
     name: 'Ada Hueso de Vega',
-    portrait: '/assets/images/PlayWay-_Fondo_blanco_3-9504680.jpg',
-    quote: 'Todos tenemos algo que aportar. Podemos dar paso a quien tiene la capacidad y avanzar juntos hacia una meta común.',
-    theme: 'Colaboración',
+    portrait: img('PlayWay-_Fondo_blanco_1-9510254.jpg'),
+    quote: 'Lo que mas disfrute del taller fue la posibilidad de colaborar en equipo, de saber apreciar las capacidades de los demás y que todos tenemos algo que aportar, hacernos a un lado para quien tenga la capacidad avance, y luego nosotros también avanzar para todos lograr la meta',
   },
-]
-
-export const gallery = [
-  { src: '/assets/images/Copia_de_IMG_3257-9337106.JPG', alt: 'Facilitador conversa con un equipo durante una actividad al aire libre', label: 'Escuchar el reto' },
-  { src: '/assets/images/Copia_de_IMG_3289-9337106.JPG', alt: 'Participantes colaboran en una dinámica de movimiento', label: 'Confiar en el equipo' },
-  { src: '/assets/images/IMG_3831-9337115.jpg', alt: 'Grupo conversa durante una sesión de aprendizaje', label: 'Reflexionar juntos' },
-  { src: '/assets/images/Copia_de_IMG_3293-9337107.JPG', alt: 'Equipo levanta las manos durante un reto colectivo', label: 'Moverse como uno' },
-  { src: '/assets/images/IMG_3969-9337121.JPG', alt: 'Facilitadores dirigen una actividad frente a un grupo', label: 'Liderar en acción' },
-  { src: '/assets/images/IMG_3819-9337114.JPG', alt: 'Participantes trabajan con materiales en una mesa', label: 'Hacer visible la idea' },
-  { src: '/assets/images/IMG_3992-9337122.JPG', alt: 'Grupo completo celebra al finalizar una experiencia', label: 'Cerrar con propósito' },
-  { src: '/assets/images/Copia_de_IMG_3552-9337108.JPG', alt: 'Equipo muestra reconocimientos después de una capacitación', label: 'Reconocer el avance' },
-  { src: '/assets/images/IMG_3693-9337109.JPG', alt: 'Participantes observan una explicación de un facilitador', label: 'Mirar desde otro lugar' },
 ]
 
 export const values = [
-  {
-    name: 'Autodeterminación y libertad',
-    text: 'Cada persona puede ejercer influencia y asumir autonomía sobre su desarrollo.',
-  },
-  {
-    name: 'Liderazgo personal',
-    text: 'Tenemos el poder y la responsabilidad de definir nuestro futuro y decidir quién queremos llegar a ser.',
-  },
-  {
-    name: 'Actitud positiva y resiliencia',
-    text: 'La alegría y la resiliencia convierten los obstáculos y los errores en oportunidades de crecimiento.',
-  },
+  { name: 'Autodeterminación y libertad', text: 'Todos somos líderes y nuestro impacto individual puede influir en la sociedad.' },
+  { name: 'Liderazgo personal', text: 'Cada persona tiene el poder y la responsabilidad de definir su propio futuro y decidir quién quiere ser.' },
+  { name: 'Actitud positiva y resiliencia', text: 'La alegría, el positivismo y la resiliencia son esenciales para superar obstáculos y encontrar oportunidades de crecimiento en los errores' },
+]
+
+// ponytail: flags hotlinked from flagcdn; self-host if the site must work offline
+export const countries = [
+  ['Bolivia', 'bo'], ['Chile', 'cl'], ['España', 'es'],
+  ['México', 'mx'], ['Perú', 'pe'], ['Colombia', 'co'],
+  ['Ecuador', 'ec'], ['Guatemala', 'gt'], ['Panamá', 'pa'],
+  ['República Dominicana', 'do'], ['Costa Rica', 'cr'], ['EE.UU', 'us'],
+  ['Honduras', 'hn'], ['Paraguay', 'py'],
+]
+
+const photo = (name, alt) => ({ src: img(name), alt })
+
+// Same mosaic as the original gallery: 3-column rows (2 | 1 | 2) then 2-column rows (1 | 2).
+export const galleryRows = [
+  [
+    [photo('IMG_3831-9337115.jpg', 'Grupo conversa durante una sesión en un auditorio'), photo('Copia_de_1J6A0338-9678933.JPG', 'Participantes con capas realizan un reto con conos')],
+    [photo('1J6A0094-8311442.jpg', 'Facilitador con capa naranja celebra con las manos en alto')],
+    [photo('IMG_3757-9337112.JPG', 'Participantes bailan durante una dinámica'), photo('Copia_de_1J6A0305-9678933.JPG', 'Dos participantes con capas frente al banner My Power')],
+  ],
+  [
+    [photo('Copia_de_IMG_3293-9337107.JPG', 'Equipo levanta las manos durante un reto al aire libre'), photo('Copia_de_IMG_3257-9337106.JPG', 'Facilitador conversa con un equipo al aire libre')],
+    [photo('IMG_3737-9337111.JPG', 'Facilitador levanta la mano frente al grupo')],
+    [photo('Copia_de_IMG_3552-9337108.JPG', 'Equipo muestra sus reconocimientos'), photo('Copia_de_IMG_3289-9337106.JPG', 'Participantes colaboran en una dinámica de movimiento')],
+  ],
+  [
+    [photo('IMG_3992-9337122.JPG', 'Grupo completo celebra al finalizar la experiencia'), photo('IMG_3819-9337114.JPG', 'Participantes atienden una explicación')],
+    [photo('Copia_de_1J6A0333-8311442.JPG', 'Facilitador dirige una experiencia frente al banner BOOM')],
+    [photo('IMG_3969-9337121.JPG', 'Facilitadores dirigen una actividad frente a un grupo'), photo('IMG_3963-9337121.JPG', 'Vista amplia del grupo en el auditorio')],
+  ],
+  [
+    [photo('IMG_3693-9337109.JPG', 'Participantes observan una explicación')],
+    [photo('IMG_3707-9337110.JPG', 'Participantes con capas en fila'), photo('IMG_3697-9337109.JPG', 'Grupo con capas naranjas durante una dinámica')],
+  ],
+  [
+    [photo('IMG_3775-9337114.JPG', 'Participantes con capas se mueven por la sala')],
+    [photo('Copia_de_IMG_3454-8223442.JPG', 'Participante sonríe frente al banner My Power'), photo('Copia_de_IMG_3460-8223443.JPG', 'Participante levanta el puño durante el taller')],
+  ],
 ]

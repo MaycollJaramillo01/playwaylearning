@@ -1,115 +1,150 @@
-import { useMemo, useState } from 'react'
-import { ArrowRight, Check, EnvelopeSimple, InstagramLogo, LinkedinLogo } from '@phosphor-icons/react'
-import { useSearchParams } from 'react-router-dom'
+import { useState } from 'react'
+import { InstagramLogo, LinkedinLogo, TiktokLogo } from '@phosphor-icons/react'
+import { ButtonLink } from '../components/ButtonLink'
 import { Reveal } from '../components/Reveal'
+import { SmartImage } from '../components/SmartImage'
+import { EMAIL, socials } from '../data/content'
 import { usePageTitle } from '../hooks/usePageTitle'
 
-const initialErrors = { name: '', company: '', email: '', phone: '', service: '', message: '' }
+const socialIcons = { Instagram: InstagramLogo, LinkedIn: LinkedinLogo, TikTok: TiktokLogo }
+const timeSlots = ['08:00', '09:00', '10:00', '11:00', '14:00', '15:00', '16:00', '16:30', '17:00', '17:30']
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
-export default function Contact() {
-  usePageTitle('Contacto', 'Agenda una conversación con PlayWay Learning sobre liderazgo, equipos y cultura.')
-  const [searchParams] = useSearchParams()
-  const initialService = useMemo(() => searchParams.get('servicio') || '', [searchParams])
-  const [status, setStatus] = useState('idle')
-  const [errors, setErrors] = useState(initialErrors)
+// Both forms hand off to the visitor's mail app; there is no backend.
+function openMail(subject, lines) {
+  window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\n'))}`
+}
 
-  const validate = (data) => {
-    const next = { ...initialErrors }
-    if (!data.name.trim()) next.name = 'Escribe tu nombre.'
-    if (!data.company.trim()) next.company = 'Escribe el nombre de tu empresa.'
-    if (!data.email.trim()) next.email = 'Escribe tu correo.'
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) next.email = 'Escribe un correo válido.'
-    if (!data.phone.trim()) next.phone = 'Escribe un teléfono.'
-    if (!data.service) next.service = 'Selecciona un servicio.'
-    if (!data.message.trim()) next.message = 'Cuéntanos brevemente el reto.'
-    setErrors(next)
-    return !Object.values(next).some(Boolean)
-  }
+function Field({ label, name, error, as = 'input', ...props }) {
+  const Tag = as
+  return (
+    <div className="field">
+      <label htmlFor={name}>{label}</label>
+      <Tag id={name} name={name} aria-invalid={Boolean(error)} aria-describedby={`${name}-error`} {...props} />
+      <span id={`${name}-error`} className="field__error">{error}</span>
+    </div>
+  )
+}
+
+function validate(data, required) {
+  const errors = {}
+  for (const key of required) if (!String(data[key] ?? '').trim()) errors[key] = '¡Campo obligatorio!'
+  if (data.email && !errors.email && !EMAIL_PATTERN.test(data.email)) errors.email = 'Escribe un correo válido.'
+  return errors
+}
+
+function ContactForm() {
+  const [errors, setErrors] = useState({})
 
   const handleSubmit = (event) => {
     event.preventDefault()
     const data = Object.fromEntries(new FormData(event.currentTarget))
-    if (!validate(data)) {
-      setStatus('error')
-      return
-    }
-
-    setStatus('loading')
-    const subject = encodeURIComponent(`Conversación sobre ${data.service}`)
-    const body = encodeURIComponent(`Nombre: ${data.name}\nEmpresa: ${data.company}\nEmail: ${data.email}\nTeléfono: ${data.phone}\nServicio: ${data.service}\n\nMensaje:\n${data.message}`)
-    window.setTimeout(() => {
-      setStatus('ready')
-      window.location.href = `mailto:Info@playwaylearning.com?subject=${subject}&body=${body}`
-    }, 500)
+    const next = validate(data, ['name', 'email', 'phone'])
+    setErrors(next)
+    if (Object.keys(next).length) return
+    openMail(`Información de servicios - ${data.name}`, [
+      `Nombre: ${data.name}`, `E-mail: ${data.email}`, `Teléfono: ${data.phone}`, '', data.message,
+    ])
   }
 
   return (
-    <section className="contact-page">
-      <div className="shell contact-grid">
-        <Reveal className="contact-copy">
-          <span className="kicker">Contacto</span>
-          <h1>Hablemos del reto, no del paquete.</h1>
-          <p>Cuéntanos qué necesita mover tu organización. El correo se preparará en tu aplicación para que puedas revisarlo antes de enviarlo.</p>
-          <div className="contact-direct">
-            <a href="mailto:Info@playwaylearning.com"><EnvelopeSimple />Info@playwaylearning.com</a>
-            <div>
-              <a href="https://www.instagram.com/playwaylearning/" target="_blank" rel="noreferrer" aria-label="Instagram"><InstagramLogo /></a>
-              <a href="https://www.linkedin.com/company/playwaylearning/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><LinkedinLogo /></a>
-            </div>
-          </div>
-        </Reveal>
+    <form className="contact-form" noValidate onSubmit={handleSubmit}>
+      <Field label="Nombre" name="name" autoComplete="name" error={errors.name} />
+      <Field label="E-mail" name="email" type="email" autoComplete="email" error={errors.email} />
+      <Field label="Teléfono" name="phone" type="tel" autoComplete="tel" placeholder="+503 7861 6000" error={errors.phone} />
+      <Field label="Mensaje" name="message" as="textarea" rows="4" />
+      <button className="button button--navy" type="submit">Enviar</button>
+    </form>
+  )
+}
 
-        <Reveal className="contact-form-wrap" delay={0.1}>
-          <form noValidate onSubmit={handleSubmit}>
-            <div className="form-field">
-              <label htmlFor="name">Nombre</label>
-              <input id="name" name="name" autoComplete="name" aria-invalid={Boolean(errors.name)} aria-describedby="name-error" />
-              <span id="name-error">{errors.name}</span>
-            </div>
-            <div className="form-field">
-              <label htmlFor="company">Empresa</label>
-              <input id="company" name="company" autoComplete="organization" aria-invalid={Boolean(errors.company)} aria-describedby="company-error" />
-              <span id="company-error">{errors.company}</span>
-            </div>
-            <div className="form-field">
-              <label htmlFor="email">Email</label>
-              <input id="email" name="email" type="email" autoComplete="email" aria-invalid={Boolean(errors.email)} aria-describedby="email-error" />
-              <span id="email-error">{errors.email}</span>
-            </div>
-            <div className="form-field">
-              <label htmlFor="phone">Teléfono</label>
-              <input id="phone" name="phone" type="tel" autoComplete="tel" aria-invalid={Boolean(errors.phone)} aria-describedby="phone-error" />
-              <span id="phone-error">{errors.phone}</span>
-            </div>
-            <div className="form-field form-field--wide">
-              <label htmlFor="service">Servicio de interés</label>
-              <select id="service" name="service" defaultValue={initialService} aria-invalid={Boolean(errors.service)} aria-describedby="service-error">
-                <option value="">Selecciona una opción</option>
-                <option value="playground">Playground</option>
-                <option value="coaching">Coaching</option>
-                <option value="metaconferencias">MetaConferencias</option>
-                <option value="por-definir">Quiero definirlo con ustedes</option>
-              </select>
-              <span id="service-error">{errors.service}</span>
-            </div>
-            <div className="form-field form-field--wide">
-              <label htmlFor="message">Mensaje</label>
-              <textarea id="message" name="message" rows="5" aria-invalid={Boolean(errors.message)} aria-describedby="message-error" />
-              <span id="message-error">{errors.message}</span>
-            </div>
-            <div className="form-submit">
-              <button className="button button--primary" type="submit" disabled={status === 'loading'}>
-                {status === 'loading' ? 'Preparando correo...' : 'Preparar correo'}
-                {status === 'ready' ? <Check aria-hidden="true" /> : <ArrowRight aria-hidden="true" />}
-              </button>
-              <p className={`form-status is-${status}`} role="status">
-                {status === 'error' && 'Revisa los campos señalados.'}
-                {status === 'ready' && 'El mensaje está listo en tu aplicación de correo.'}
-              </p>
-            </div>
-          </form>
-        </Reveal>
+function Booking() {
+  const [errors, setErrors] = useState({})
+  const [date, setDate] = useState('')
+  const [time, setTime] = useState('')
+  const today = new Date().toISOString().slice(0, 10)
+  const prettyDate = date
+    ? new Date(`${date}T12:00:00`).toLocaleDateString('es', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' })
+    : 'Elige una fecha'
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    const data = Object.fromEntries(new FormData(event.currentTarget))
+    const next = validate(data, ['date', 'time', 'name', 'email'])
+    setErrors(next)
+    if (Object.keys(next).length) return
+    openMail(`Reservar una cita - ${data.date} ${data.time}`, [
+      `Nombre: ${data.name}`, `E-mail: ${data.email}`, `Fecha: ${data.date}`, `Hora: ${data.time}`,
+    ])
+  }
+
+  return (
+    <form className="booking" noValidate onSubmit={handleSubmit}>
+      <div className="booking__picker">
+        <h3>Elige una fecha y hora</h3>
+        <Field label="Fecha" name="date" type="date" min={today} value={date} onChange={(e) => setDate(e.target.value)} error={errors.date} />
+        <fieldset className="booking__slots" aria-describedby="time-error">
+          <legend>Hora</legend>
+          {timeSlots.map((slot) => (
+            <label key={slot} className={time === slot ? 'is-active' : ''}>
+              <input type="radio" name="time" value={slot} checked={time === slot} onChange={() => setTime(slot)} />
+              {slot}
+            </label>
+          ))}
+          <span id="time-error" className="field__error">{errors.time}</span>
+        </fieldset>
+        <small>Hora estándar central (GMT-06:00)</small>
       </div>
-    </section>
+      <div className="booking__summary">
+        <h3>Reservar una Cita<small>con Playway Learning</small></h3>
+        <dl>
+          <div><dt>FECHA</dt><dd>{prettyDate}</dd></div>
+          <div><dt>HORA</dt><dd>{time || 'Elige una hora'}</dd></div>
+        </dl>
+        <Field label="Nombre" name="name" autoComplete="name" error={errors.name} />
+        <Field label="E-mail" name="email" type="email" autoComplete="email" error={errors.email} />
+        <button className="button button--orange" type="submit">Reservar</button>
+      </div>
+    </form>
+  )
+}
+
+export default function Contact() {
+  usePageTitle('Contacto', 'Ponte en contacto con PlayWay Learning o agenda tu cita.')
+
+  return (
+    <>
+      <section className="page-title">
+        <h1 className="title title--blue">Contáctanos</h1>
+      </section>
+
+      <section className="section contact">
+        <div className="shell contact__grid">
+          <Reveal className="contact__copy">
+            <h2 className="title title--yellow">¿Estas interesado en algún servicio?</h2>
+            <p>¡Ponte en contacto para que te podamos ayudar!</p>
+            <ContactForm />
+          </Reveal>
+          <Reveal className="contact__card" delay={0.1}>
+            <SmartImage src="/assets/images/Copia_de_IMG_3257-9337106.JPG" alt="Facilitador de PlayWay Learning conversa con un equipo" />
+            <ButtonLink to="/servicios">Ver Servicios</ButtonLink>
+          </Reveal>
+        </div>
+        <div className="contact__social">
+          {socials.map(({ name, href }) => {
+            const Icon = socialIcons[name]
+            return <a key={name} href={href} target="_blank" rel="noreferrer" aria-label={name}><Icon size={26} weight="bold" /></a>
+          })}
+        </div>
+      </section>
+
+      <section className="section appointment" id="cita">
+        <div className="shell">
+          <h2 className="title title--black">Agenda tu cita</h2>
+          <Booking />
+          <div className="appointment__cta"><ButtonLink to="/servicios">Ver Servicios</ButtonLink></div>
+        </div>
+      </section>
+    </>
   )
 }
