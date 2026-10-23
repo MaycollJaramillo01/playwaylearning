@@ -1,10 +1,10 @@
 import { motion as Motion, useReducedMotion } from 'motion/react'
-import { CalendarCheck } from '@phosphor-icons/react'
+import { ArrowRight, CalendarCheck, Quotes } from '@phosphor-icons/react'
 import { ButtonLink } from '../components/ButtonLink'
 import { Reveal } from '../components/Reveal'
 import { ServiceCards } from '../components/ServiceCards'
 import { SmartImage } from '../components/SmartImage'
-import { testimonials } from '../data/content'
+import { stats, testimonials } from '../data/content'
 import { usePageTitle } from '../hooks/usePageTitle'
 
 function Hero() {
@@ -34,7 +34,26 @@ function Hero() {
         <h1>BIENVENIDOS</h1>
         <p className="hero__lead">A NUESTRO ESPACIO DE CRECIMIENTO Y CREATIVIDAD</p>
         <p className="hero__tags">Aprendizaje Interactivo | Desarrollo Personal | Creatividad sin Límites</p>
+        <div className="hero__actions">
+          <ButtonLink to="/contacto#cita" icon={CalendarCheck} variant="orange">Agenda una cita</ButtonLink>
+          <ButtonLink to="/servicios" variant="ghost">Nuestros servicios</ButtonLink>
+        </div>
       </Motion.div>
+    </section>
+  )
+}
+
+function Stats() {
+  return (
+    <section className="stats" aria-label="PlayWay Learning en cifras">
+      <div className="shell stats__card">
+        {stats.map((stat) => (
+          <div key={stat.label} className="stat">
+            <strong>{stat.value}</strong>
+            <span>{stat.label}</span>
+          </div>
+        ))}
+      </div>
     </section>
   )
 }
@@ -43,14 +62,20 @@ function Testimonials() {
   return (
     <section className="section testimonials">
       <div className="shell">
+        <span className="eyebrow">Lo que dicen los participantes</span>
         <h2 className="title title--black">Testimonios</h2>
         <div className="testimonials__grid">
           {testimonials.map((item, index) => (
-            <Reveal key={item.name} className="testimonial" delay={index * 0.08}>
-              <img src={item.portrait} alt={`Retrato de ${item.name}`} loading="lazy" />
-              <h3>{item.name}</h3>
+            <Reveal key={item.name} className="testimonial" delay={(index % 2) * 0.08}>
+              <Quotes className="testimonial__mark" size={40} weight="fill" aria-hidden="true" />
               <p>{item.quote}</p>
-              <span className="testimonial__stars" role="img" aria-label="5 de 5 estrellas">★★★★★</span>
+              <div className="testimonial__author">
+                <img src={item.portrait} alt={`Retrato de ${item.name}`} loading="lazy" />
+                <div>
+                  <h3>{item.name}</h3>
+                  <span className="testimonial__stars" role="img" aria-label="5 de 5 estrellas">★★★★★</span>
+                </div>
+              </div>
             </Reveal>
           ))}
         </div>
@@ -65,27 +90,30 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <Stats />
 
       <section className="section about-intro">
         <div className="shell about-intro__grid">
           <Reveal className="about-intro__copy">
+            <span className="eyebrow">PlayWay Learning</span>
             <h2 className="title title--light title--orange">¿Quiénes somos y Cómo podemos ayudarte?</h2>
-            <p>¡Bienvenidos a PlayWay Learning, donde todas las persona son líderes, la vida y los negocios son un juego infinito, y donde crecer y aprender es divertido!</p>
+            <p className="lead">¡Bienvenidos a PlayWay Learning, donde todas las persona son líderes, la vida y los negocios son un juego infinito, y donde crecer y aprender es divertido!</p>
             <p>Estamos aquí para transformar tu equipo de manera significativa y duradera. Nuestra misión es empoderar personas y despertar los líderes que cada uno lleva por dentro con un enfoque sólido en habilidades blandas.</p>
             <p>Nuestra visión es crear un mundo con personas que por medio de su liderazgo personal hagan transcender al mundo y sus organizaciones creando su propio legado.</p>
+            <ButtonLink to="/nosotros" variant="link">Conoce más sobre nosotros<ArrowRight size={16} weight="bold" aria-hidden="true" /></ButtonLink>
           </Reveal>
           <Reveal className="about-intro__media" delay={0.1}>
-            <SmartImage src="/assets/images/1J6A0094-8311442.jpg" alt="Jorge Henríquez, facilitador de PlayWay Learning, con capa naranja" />
+            <SmartImage src="/assets/images/1J6A0094-8311442.jpg" alt="Jorge Henríquez, facilitador de PlayWay Learning, con capa naranja" className="framed" />
             <ButtonLink to="/contacto#cita" icon={CalendarCheck} variant="navy-square">Agenda una cita</ButtonLink>
           </Reveal>
         </div>
-        <hr className="divider" />
       </section>
 
       <Testimonials />
 
       <section className="section services-home">
         <div className="shell">
+          <span className="eyebrow">Lo que hacemos</span>
           <h2 className="title title--xl title--black">Nuestros <span className="text-blue">servicios</span></h2>
           <ServiceCards />
         </div>

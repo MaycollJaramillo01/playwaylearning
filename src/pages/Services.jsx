@@ -21,18 +21,23 @@ export default function Services() {
 
   return (
     <>
-      <section className="page-title page-title--ruled">
+      <section className="page-title">
+        <span className="eyebrow">Nuestro método</span>
         <h1 className="title title--blue">PROCESO DE ACOMPAÑAMIENTO: LEVEL-UP</h1>
       </section>
 
       <section className="section level-up">
-        <div className="shell level-up__grid">
+        <ol className="shell level-up__grid">
           {levelUp.map((step, index) => (
-            <Reveal key={step.name} delay={index * 0.08}>
-              <p>{step.name}: {step.text}</p>
-            </Reveal>
+            <li key={step.name}>
+              <Reveal className="step" delay={index * 0.08}>
+                <span className="step__number">{index + 1}</span>
+                <h2>{step.name}</h2>
+                <p>{step.text}</p>
+              </Reveal>
+            </li>
           ))}
-        </div>
+        </ol>
       </section>
 
       <section className="section services-home">
@@ -108,8 +113,8 @@ export default function Services() {
           <ul className="countries__grid">
             {countries.map(([name, code], index) => (
               <li key={code} className={`text-${countryColors[index % countryColors.length]}`}>
+                <img src={`https://flagcdn.com/w160/${code}.png`} alt="" loading="lazy" />
                 <h3>{name}</h3>
-                <img src={`https://flagcdn.com/w320/${code}.png`} alt={`Bandera de ${name}`} loading="lazy" />
               </li>
             ))}
           </ul>

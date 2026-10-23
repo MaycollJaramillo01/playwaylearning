@@ -1,7 +1,9 @@
 const img = (name) => `/assets/images/${name}`
 
 export const WHATSAPP_URL = 'https://wa.me/50378616000?text=Hola,%20necesito%20m%C3%A1s%20informaci%C3%B3n!'
+export const WHATSAPP_LABEL = '+503 7861 6000'
 export const EMAIL = 'Info@playwaylearning.com'
+export const LOCATION = 'Santa Tecla, El Salvador'
 
 export const socials = [
   { name: 'Instagram', href: 'https://www.instagram.com/playwaylearning/' },
@@ -10,9 +12,27 @@ export const socials = [
 ]
 
 export const services = [
-  { slug: 'playground', title: ['Capacitaciones', '"Playground"'] },
-  { slug: 'coaching', title: ['Paquetes de', 'Coaching'] },
-  { slug: 'metaconferencias', title: ['MetaConferencias'] },
+  {
+    slug: 'playground',
+    title: ['Capacitaciones', '"Playground"'],
+    text: 'Seis módulos para pulir las habilidades humanas que todo líder necesita.',
+    image: img('Copia_de_IMG_3293-9337107.JPG'),
+    alt: 'Equipo levanta las manos durante un reto Playground al aire libre',
+  },
+  {
+    slug: 'coaching',
+    title: ['Paquetes de', 'Coaching'],
+    text: 'Sesiones diseñadas para alcanzar metas concretas y obtener resultados.',
+    image: img('Copia_de_IMG_3257-9337106.JPG'),
+    alt: 'Facilitador conversa con un equipo durante una sesión',
+  },
+  {
+    slug: 'metaconferencias',
+    title: ['MetaConferencias'],
+    text: 'Conferencias donde la metáfora convierte ideas en aprendizaje memorable.',
+    image: img('Copia_de_1J6A0333-8311442.JPG'),
+    alt: 'Conferencista frente al banner BOOM durante una MetaConferencia',
+  },
 ]
 
 export const levelUp = [
@@ -66,6 +86,13 @@ export const countries = [
   ['Ecuador', 'ec'], ['Guatemala', 'gt'], ['Panamá', 'pa'],
   ['República Dominicana', 'do'], ['Costa Rica', 'cr'], ['EE.UU', 'us'],
   ['Honduras', 'hn'], ['Paraguay', 'py'],
+]
+
+export const stats = [
+  { value: '6', label: 'módulos en el programa Playground' },
+  { value: String(countries.length), label: 'países con facilitadores certificados' },
+  { value: '+10', label: 'naciones respaldan MetaTraining®' },
+  { value: String(levelUp.length), label: 'etapas del acompañamiento Level-Up' },
 ]
 
 const photo = (name, alt) => ({ src: img(name), alt })

@@ -1,27 +1,33 @@
 import { useRef, useState } from 'react'
-import { X } from '@phosphor-icons/react'
+import { CaretLeft, CaretRight, MagnifyingGlassPlus, X } from '@phosphor-icons/react'
 import { SmartImage } from '../components/SmartImage'
 import { galleryRows } from '../data/content'
 import { usePageTitle } from '../hooks/usePageTitle'
 
+const photos = galleryRows.flat(2)
+
 export default function Gallery() {
   usePageTitle('Galeria', 'Fotografías reales de experiencias de aprendizaje PlayWay Learning.')
   const dialogRef = useRef(null)
-  const [selected, setSelected] = useState(null)
+  const [index, setIndex] = useState(null)
+  const selected = index === null ? null : photos[index]
 
-  const openImage = (image) => {
-    setSelected(image)
+  const open = (image) => {
+    setIndex(photos.indexOf(image))
     dialogRef.current?.showModal()
   }
+  const close = () => dialogRef.current?.close()
+  const step = (delta) => setIndex((current) => (current + delta + photos.length) % photos.length)
 
-  const closeImage = () => {
-    dialogRef.current?.close()
-    setSelected(null)
+  const handleKeyDown = (event) => {
+    if (event.key === 'ArrowRight') step(1)
+    if (event.key === 'ArrowLeft') step(-1)
   }
 
   return (
     <>
-      <section className="page-title page-title--ruled">
+      <section className="page-title">
+        <span className="eyebrow">Momentos PlayWay</span>
         <h1 className="title title--light title--blue">Nuestra Galeria</h1>
       </section>
 
@@ -32,8 +38,9 @@ export default function Gallery() {
               {row.map((column, columnIndex) => (
                 <div key={columnIndex} className="gallery__col">
                   {column.map((image) => (
-                    <button key={image.src} type="button" onClick={() => openImage(image)} aria-label={`Ampliar: ${image.alt}`}>
+                    <button key={image.src} type="button" onClick={() => open(image)} aria-label={`Ampliar: ${image.alt}`}>
                       <SmartImage src={image.src} alt={image.alt} />
+                      <span className="gallery__zoom" aria-hidden="true"><MagnifyingGlassPlus size={28} weight="bold" /></span>
                     </button>
                   ))}
                 </div>
@@ -43,9 +50,23 @@ export default function Gallery() {
         </div>
       </section>
 
-      <dialog className="image-dialog" ref={dialogRef} onClose={() => setSelected(null)} onClick={(event) => event.target === dialogRef.current && closeImage()}>
-        <button type="button" onClick={closeImage} aria-label="Cerrar imagen"><X size={24} /></button>
-        {selected && <img src={selected.src} alt={selected.alt} />}
+      <dialog
+        className="image-dialog"
+        ref={dialogRef}
+        aria-label="Visor de fotos"
+        onClose={() => setIndex(null)}
+        onKeyDown={handleKeyDown}
+        onClick={(event) => event.target === dialogRef.current && close()}
+      >
+        {selected && (
+          <figure>
+            <img src={selected.src} alt={selected.alt} />
+            <figcaption>{selected.alt}<span>{index + 1} / {photos.length}</span></figcaption>
+          </figure>
+        )}
+        <button className="image-dialog__close" type="button" onClick={close} aria-label="Cerrar imagen"><X size={22} weight="bold" /></button>
+        <button className="image-dialog__nav image-dialog__nav--prev" type="button" onClick={() => step(-1)} aria-label="Foto anterior"><CaretLeft size={24} weight="bold" /></button>
+        <button className="image-dialog__nav image-dialog__nav--next" type="button" onClick={() => step(1)} aria-label="Foto siguiente"><CaretRight size={24} weight="bold" /></button>
       </dialog>
     </>
   )

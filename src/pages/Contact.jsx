@@ -1,12 +1,12 @@
 import { useState } from 'react'
-import { InstagramLogo, LinkedinLogo, TiktokLogo } from '@phosphor-icons/react'
+import { EnvelopeSimple, MapPin, WhatsappLogo } from '@phosphor-icons/react'
 import { ButtonLink } from '../components/ButtonLink'
+import { SocialLinks } from '../components/Layout'
 import { Reveal } from '../components/Reveal'
 import { SmartImage } from '../components/SmartImage'
-import { EMAIL, socials } from '../data/content'
+import { EMAIL, LOCATION, WHATSAPP_LABEL, WHATSAPP_URL } from '../data/content'
 import { usePageTitle } from '../hooks/usePageTitle'
 
-const socialIcons = { Instagram: InstagramLogo, LinkedIn: LinkedinLogo, TikTok: TiktokLogo }
 const timeSlots = ['08:00', '09:00', '10:00', '11:00', '14:00', '15:00', '16:00', '16:30', '17:00', '17:30']
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
@@ -115,6 +115,7 @@ export default function Contact() {
   return (
     <>
       <section className="page-title">
+        <span className="eyebrow">Estamos para ayudarte</span>
         <h1 className="title title--blue">Contáctanos</h1>
       </section>
 
@@ -126,23 +127,23 @@ export default function Contact() {
             <ContactForm />
           </Reveal>
           <Reveal className="contact__card" delay={0.1}>
-            <SmartImage src="/assets/images/Copia_de_IMG_3257-9337106.JPG" alt="Facilitador de PlayWay Learning conversa con un equipo" />
+            <SmartImage src="/assets/images/IMG_3737-9337111.JPG" alt="Facilitador de PlayWay Learning guía una dinámica de grupo" />
+            <ul className="contact__info">
+              <li><EnvelopeSimple aria-hidden="true" /><a href={`mailto:${EMAIL}`}>{EMAIL}</a></li>
+              <li><WhatsappLogo aria-hidden="true" /><a href={WHATSAPP_URL} target="_blank" rel="noreferrer">{WHATSAPP_LABEL}</a></li>
+              <li><MapPin aria-hidden="true" />{LOCATION}</li>
+            </ul>
+            <SocialLinks className="contact__social" />
             <ButtonLink to="/servicios">Ver Servicios</ButtonLink>
           </Reveal>
-        </div>
-        <div className="contact__social">
-          {socials.map(({ name, href }) => {
-            const Icon = socialIcons[name]
-            return <a key={name} href={href} target="_blank" rel="noreferrer" aria-label={name}><Icon size={26} weight="bold" /></a>
-          })}
         </div>
       </section>
 
       <section className="section appointment" id="cita">
         <div className="shell">
+          <span className="eyebrow">Reserva en línea</span>
           <h2 className="title title--black">Agenda tu cita</h2>
           <Booking />
-          <div className="appointment__cta"><ButtonLink to="/servicios">Ver Servicios</ButtonLink></div>
         </div>
       </section>
     </>
