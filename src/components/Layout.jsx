@@ -31,9 +31,8 @@ function useScrolledPast(offset) {
 
 function Logo() {
   return (
-    <Link className="logo" to="/" aria-label="PlayWay Learning, inicio">
-      <span className="logo__main">Play<span>Way</span></span>
-      <span className="logo__sub">LEARNING</span>
+    <Link className="logo" to="/">
+      <img src="/assets/images/playway-logo.webp" alt="PlayWay Learning, inicio" width="800" height="272" />
     </Link>
   )
 }
